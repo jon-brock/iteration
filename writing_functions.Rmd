@@ -1,0 +1,59 @@
+---
+title: "writing functions"
+output: github_document
+---
+
+```{r load packages}
+library(tidyverse)
+library(rvest)
+```
+
+```{r}
+x <- rnorm(n = 30, mean = 4, sd = 2.3)
+x_again <- rnorm(n = 30, mean = 6, sd = 0.3)
+y <- rnorm(n = 30, mean = 24, sd = 2.3)
+x
+
+(x - mean(x) / sd(x))
+(x_again - mean(x_again)) / sd(x_again)
+```
+
+```{r}
+z_score <- function(x) {
+    (x - mean(x)) / sd(x)
+}
+
+z_score(x = x_again)
+z_score(x = y)
+
+z_score(x = 3)
+z_score(x = iris)
+```
+
+```{r}
+z_score <- function(x) {
+    if (!is.numeric(x)) {
+        stop("x should be numeric")
+    } else if (length == 1) {
+        stop("Z scores cannot be computed for length 1 vectors")
+    }
+}
+```
+
+```{r}
+mean_and_sd = function(x) {
+  
+  if (!is.numeric(x)) {
+    stop("Argument x should be numeric")
+  } else if (length(x) == 1) {
+    stop("Cannot be computed for length 1 vectors")
+  }
+  
+  mean_x = mean(x)
+  sd_x = sd(x)
+
+  list(mean = mean_x, 
+       sd = sd_x)
+}
+```
+
